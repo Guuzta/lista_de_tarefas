@@ -7,4 +7,6 @@ router.post('/tasks/', TasksController.post)
 
 router.put('/tasks/:id', TasksController.put)
 
+router.delete('/tasks/:id', TasksController.remove)
+
 module.exports = router

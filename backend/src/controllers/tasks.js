@@ -44,8 +44,23 @@ async function put (req,res) {
 
 }
 
+async function remove (req,res) {
+
+    const { id } = req.params
+
+    const removeTask = await tasksModel.deleteOne({_id: id})
+
+    const message = removeTask.deletedCount ? 'sucess' : 'error'
+
+    res.send({
+        message
+    })
+
+}
+
 module.exports = {
     get,
     post,
-    put
+    put,
+    remove
 }
