@@ -4,12 +4,11 @@ const cors = require('cors')
 const app = express()
 
 const dataBase = require('./database/database')
+const routes = require('./routes/routes')
 
 app.use(express.json())
 
-app.get('/', (req,res) => {
-    res.send('Olá, mundo!')
-})
+app.use('/api', routes)
 
 dataBase.connect()
 
