@@ -15,7 +15,23 @@ async function get (req,res) {
 
 }
 
+async function post (req, res) {
+
+    const { task } = req.body
+
+    const newTask = new tasksModel({ task })
+
+    await newTask.save()
+
+    console.log(task)
+
+    res.send({
+        message: 'sucess'
+    })
+
+}
 
 module.exports = {
     get,
+    post,
 }
