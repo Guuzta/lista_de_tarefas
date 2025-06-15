@@ -31,7 +31,21 @@ async function post (req, res) {
 
 }
 
+async function put (req,res) {
+
+    const { id } = req.params
+
+    const task = await tasksModel.findOneAndUpdate({_id: id}, req.body, {new: true})
+
+    res.send({
+        messsage: 'sucess',
+        task
+    })
+
+}
+
 module.exports = {
     get,
     post,
+    put
 }
