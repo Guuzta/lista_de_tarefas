@@ -8,6 +8,8 @@ const routes = require('./routes/routes')
 
 app.use(express.json())
 
+app.use(cors())
+
 app.use('/api', routes)
 
 dataBase.connect()
