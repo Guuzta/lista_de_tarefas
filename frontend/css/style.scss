@@ -79,6 +79,19 @@ body {
             color: #ffffff;
             border: none;
         }
+
+        .responseMessage {
+            margin-top: 35px;
+            text-align: center;
+
+            &.sucess {
+                color: #238636;
+            }
+
+            &.error {
+                color: #ff0000;
+            }
+        }
     }
 }
 

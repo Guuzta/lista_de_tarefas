@@ -75,6 +75,16 @@ body {
   color: #ffffff;
   border: none;
 }
+.registerForm .boxForm .responseMessage {
+  margin-top: 35px;
+  text-align: center;
+}
+.registerForm .boxForm .responseMessage.sucess {
+  color: #238636;
+}
+.registerForm .boxForm .responseMessage.error {
+  color: #ff0000;
+}
 
 .loginForm {
   padding: 40px;

@@ -18,7 +18,7 @@
         </nav>
     </header>
 
-    <form class="registerForm">
+    <form id="registerForm" class="registerForm" action="login.html">
         <div class="boxForm">
             <h2>Criar conta</h2>
 
@@ -29,12 +29,16 @@
             <input name="password" type="text" placeholder="Senha">
 
             <button type="submit">Registrar</button>
+
+            <span class="responseMessage" id="responseMessage"></span>
         </div>
     </form>
 
     <footer class="footer">
         <span>© Desenvolvido por Gustavo Bodziak</span>
     </footer>
+
+    <script src="js/register.js"></script>
 </body>
 
 </html>
