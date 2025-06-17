@@ -12,4 +12,6 @@ router.delete('/tasks/:id', TasksController.remove)
 
 router.post('/register', AuthenticationController.registerUser)
 
+router.get('/login', AuthenticationController.loginUser)
+
 module.exports = router

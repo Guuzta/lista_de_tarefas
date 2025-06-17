@@ -13,8 +13,8 @@ async function registerUser(req, res) {
 
         const userExists = await userModel.findOne({
             $and: [
-                {name: name},
-                {email: email}
+                { name: name },
+                { email: email }
             ]
         })
 
@@ -49,6 +49,42 @@ async function registerUser(req, res) {
 
 }
 
+async function loginUser(req, res) {
+
+    const { email, password } = req.body
+
+    try {
+        const user = await userModel.findOne({ email })
+
+        if (!user) {
+            return res.send({
+                message: 'Usuário não encontrado!',
+            })
+        }
+
+        const isMatch = await bcrypt.compare(password, user.password)
+
+        if(!isMatch) {
+            res.send({
+                message: 'Senha inválida, tente novamente!' 
+            })
+        }
+
+        res.send({
+            message: `Usuário encontrado! Seja bem-vindo ${user.name}!`
+        })
+
+    } catch (error) {
+        res.send({
+            message: 'Erro no servidor!'
+        })
+    }
+
+    
+
+}
+
 module.exports = {
-    registerUser
+    registerUser,
+    loginUser
 }
