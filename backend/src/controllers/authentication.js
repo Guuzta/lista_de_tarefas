@@ -4,12 +4,18 @@ async function registerUser(req, res) {
 
     const {
         name,
+        email,
         password
     } = req.body
 
     try {
 
-        const userExists = await userModel.findOne({ name })
+        const userExists = await userModel.findOne({
+            $and: [
+                {name: name},
+                {email: email}
+            ]
+        })
 
         if (userExists) {
             return res.send({
@@ -19,6 +25,7 @@ async function registerUser(req, res) {
 
         const newUser = new userModel({
             name,
+            email,
             password
         })
 
