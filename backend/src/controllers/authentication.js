@@ -1,4 +1,5 @@
 const userModel = require('../models/user')
+const bcrypt = require('bcrypt')
 
 async function registerUser(req, res) {
 
@@ -24,10 +25,12 @@ async function registerUser(req, res) {
             })
         }
 
+        const hashedPassword = await bcrypt.hash(password, 10)
+
         const newUser = new userModel({
             name,
             email,
-            password
+            password: hashedPassword
         })
 
         await newUser.save()
