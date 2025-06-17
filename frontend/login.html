@@ -16,7 +16,7 @@
         </nav>
     </header>
 
-    <form class="loginForm">
+    <form id="loginForm" class="loginForm" action="/frontend/todolist.html">
         <div class="boxForm">
             <h2>Login</h2>
 
@@ -25,6 +25,8 @@
             <input name="password" type="text" placeholder="Senha">
 
             <button type="submit">Entrar</button>
+
+            <span class="responseMessage" id="responseMessage"></span>
         </div>
     </form>
 
@@ -32,5 +34,6 @@
         <span>© Desenvolvido por Gustavo Bodziak</span>
     </footer>
 
+    <script src="js/login.js"></script>
 </body>
 </html>
