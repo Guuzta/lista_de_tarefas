@@ -19,7 +19,8 @@ async function registerUser(req, res) {
 
         if (userExists) {
             return res.send({
-                message: 'Esse usuário ja está cadastrado!'
+                message: 'Esse usuário ja está cadastrado!',
+                succeed: false
             })
         }
 
@@ -32,7 +33,8 @@ async function registerUser(req, res) {
         await newUser.save()
 
         res.send({
-            message: 'Usuário cadastrado com sucesso!'
+            message: 'Usuário cadastrado com sucesso!',
+            succeed: true
         })
 
     } catch (error) {
