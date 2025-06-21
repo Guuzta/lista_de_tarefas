@@ -2,24 +2,20 @@ const jwt = require('jsonwebtoken')
 require('dotenv').config()
 const path = require('path')
 
-function auth (req,res) {
+function auth (req,res,next) {
 
-    const token = req.headers.authorization?.split(' ')[1]
+    const token = req.cookies.token
 
     if(!token) {
-        return res.json({
-            message: 'Acesso negado, Token inválido!'
-        })
+        return res.redirect('/login')
     }
 
     try {
-        console.log(token)
-        jwt.verify(token, process.env.SECRET)
-        res.sendFile(path.join(__dirname, '../private/todolist.html'))
+        const dataUser = jwt.verify(token, process.env.SECRET)
+        req.user = dataUser
+        next()
     } catch (error) {
-        return res.json({
-            message: `Token inválido! ${error}`
-        })
+        return res.redirect('/login')
     }
 
 }

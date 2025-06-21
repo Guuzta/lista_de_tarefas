@@ -76,11 +76,12 @@ async function loginUser( req, res) {
 
         const token =  jwt.sign({ email }, process.env.SECRET, { expiresIn: '1h' } )
 
-        res.send({
-            message: `Usuário encontrado! Seja bem-vindo ${user.name}!`,
-            succeed: true,
-            token
+        res.cookie('token', token, {
+            httpOnly: true,
+            maxAge: 3600000
         })
+
+        return res.redirect('/')
 
     } catch (error) {
         res.send({
