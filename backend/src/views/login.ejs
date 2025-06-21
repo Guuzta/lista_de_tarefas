@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <h1>ListaDeTarefas</h1>
+
+        <nav class="linksList">
+            <a href="/login">Login</a>
+            <a href="/register">Registrar</a>
+        </nav>
+    </header>
+
+    <form id="loginForm" class="loginForm" action="/frontend/todolist.html">
+        <div class="boxForm">
+            <h2>Login</h2>
+
+            <input name="email" type="email" placeholder="Email">
+
+            <input name="password" type="text" placeholder="Senha">
+
+            <button type="submit">Entrar</button>
+
+            <span class="responseMessage" id="responseMessage"></span>
+        </div>
+    </form>
+
+    <footer class="footer">
+        <span>© Desenvolvido por Gustavo Bodziak</span>
+    </footer>
+
+    <script src="js/login.js"></script>
+</body>
+</html>

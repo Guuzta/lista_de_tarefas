@@ -1,16 +1,23 @@
 const express = require('express')
 const cors = require('cors')
+const path = require('path')
 
 const app = express()
 
+app.use(express.static(path.join(__dirname, 'public')))
+app.set('view engine', 'ejs')
+app.set('views', path.join(__dirname, 'views'))
+
 const dataBase = require('./database/database')
-const routes = require('./routes/routes')
+const apiRoutes = require('./routes/api')
+const webRoutes = require('./routes/web')
 
 app.use(express.json())
 
 app.use(cors())
 
-app.use('/api', routes)
+app.use('/api', apiRoutes)
+app.use('/', webRoutes)
 
 dataBase.connect()
 
