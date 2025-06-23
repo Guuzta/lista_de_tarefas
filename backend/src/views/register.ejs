@@ -9,14 +9,8 @@
 </head>
 
 <body>
-    <header class="header">
-        <h1>ListaDeTarefas</h1>
-
-        <nav class="linksList">
-            <a href="/login">Login</a>
-            <a href="/register">Registrar</a>
-        </nav>
-    </header>
+   
+    <%- include('partials/header') %>
 
     <form id="registerForm" class="registerForm" action="todolist.html">
         <div class="boxForm">
@@ -34,9 +28,7 @@
         </div>
     </form>
 
-    <footer class="footer">
-        <span>© Desenvolvido por Gustavo Bodziak</span>
-    </footer>
+    <%- include('partials/footer') %>
 
     <script src="js/register.js"></script>
 </body>

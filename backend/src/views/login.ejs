@@ -7,14 +7,8 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header class="header">
-        <h1>ListaDeTarefas</h1>
-
-        <nav class="linksList">
-            <a href="/login">Login</a>
-            <a href="/register">Registrar</a>
-        </nav>
-    </header>
+    
+    <%- include('partials/header') %>
 
     <form id="loginForm" class="loginForm" action="/api/login" method="POST">
         <div class="boxForm">
@@ -30,9 +24,7 @@
         </div>
     </form>
 
-    <footer class="footer">
-        <span>© Desenvolvido por Gustavo Bodziak</span>
-    </footer>
+    <%- include('partials/footer') %>
 
 </body>
 </html>
