@@ -74,7 +74,8 @@ async function loginUser( req, res) {
             })
         }
 
-        const token =  jwt.sign({ email }, process.env.SECRET, { expiresIn: '1h' } )
+        const { _id, name } = user
+        const token =  jwt.sign({ _id, name }, process.env.SECRET, { expiresIn: '1h' } )
 
         res.cookie('token', token, {
             httpOnly: true,
@@ -95,5 +96,5 @@ async function loginUser( req, res) {
 
 module.exports = {
     registerUser,
-    loginUser
+    loginUser,
 }

@@ -12,7 +12,8 @@ function auth (req,res,next) {
 
     try {
         const dataUser = jwt.verify(token, process.env.SECRET)
-        req.user = dataUser
+        req.userName = dataUser.name
+        req.userId = dataUser._id
         next()
     } catch (error) {
         return res.redirect('/login')

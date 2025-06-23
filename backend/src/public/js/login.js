@@ -16,33 +16,7 @@ loginForm.onsubmit = function (e) {
         body: JSON.stringify({
             email,
             password
-        })
+        }),
+        credentials: 'include'
     })
-        .then(response => response.json())
-        .then(data => {
-
-            const token = data.token
-
-            if(data.succeed) {
-
-                fetch(`${API_URL}/todolist`, {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': `Bearer ${token}`,
-                        'Content-type': 'application/json'
-                    }
-                })
-                    .then(response => response.text())
-                    .then(html => {
-                        document.open()
-                        document.write(html)
-                        document.close()
-                    })
-
-            } else {
-                responseMessage.classList.add('error')
-                responseMessage.innerText = data.message
-            }
-
-        })
 }

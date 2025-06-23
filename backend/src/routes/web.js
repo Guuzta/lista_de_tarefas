@@ -3,7 +3,7 @@ const authorization = require('../middleware/auth')
 
 router.get('/', authorization, (req,res) => {
     res.render('index', {
-        user: req.user,
+        user: req.userName,
         message: 'mensagem personalizada!'
     })
 })
