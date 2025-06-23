@@ -1,12 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-    <h1>TESTE</h1>
-    <%= message%>
+
+    <header class="todolistHeader">
+        <h1>ListaDeTarefas</h1>
+
+        <nav class="linksList">
+            <a href="/logout">Sair</a>
+        </nav>
+    </header>
+
+    <main class="boxTasks">
+        <section class="addTask">
+            <h2>Seja bem-vindo Gustavo !</h2>
+            <button class="newTask">+ Adicionar tarefa</button>
+        </section>
+
+        <section class="tasks">
+
+            <div class="task">
+                <h3>Ir ao mercado fazer compras</h3>
+
+                <span class="status">Status: <b>Pendente</b></span>
+
+                <hr class="horizontalRule">
+
+                <div class="boxButtons">
+                    <button>Editar</button>
+                    <button>Deletar</button>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <%- include('partials/footer') %>
 </body>
+
 </html>
