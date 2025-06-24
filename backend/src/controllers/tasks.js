@@ -17,13 +17,11 @@ async function get (req,res) {
 
 async function post (req, res) {
 
-    const { task } = req.body
+    const { description, userId } = req.body
 
-    const newTask = new tasksModel({ task })
+    const newTask = new tasksModel({ description, userId })
 
     await newTask.save()
-
-    console.log(task)
 
     res.send({
         message: 'sucess'

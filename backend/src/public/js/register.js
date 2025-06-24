@@ -1,7 +1,7 @@
 const registerForm = document.querySelector('.registerForm')
 const API_URL = 'http://localhost:3000/api'
 
-registerForm.onsubmit = function (e) {
+registerForm.onsubmit = async function (e) {
     e.preventDefault()
 
     const name = document.forms['registerForm'].name.value
@@ -10,7 +10,7 @@ registerForm.onsubmit = function (e) {
 
     const responseMessage = document.getElementById('responseMessage')
 
-    fetch(`${API_URL}/register`, {
+    await fetch(`${API_URL}/register`, {
         method: 'POST',
         headers: {
             'Content-type': 'application/json'

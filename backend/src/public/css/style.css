@@ -217,4 +217,33 @@ body {
 }
 .boxTasks .tasks .task .boxButtons button:first-child {
   margin-right: 10px;
+}
+
+.popupBackground {
+  background-color: #161b21;
+  border: 1px solid #3a3a3a;
+}
+
+.title {
+  color: #c9d4db;
+}
+
+.confirmButton {
+  background-color: #238636;
+}
+.confirmButton:hover {
+  background-color: #165823;
+}
+
+.swal2-input {
+  color: #c9d4db;
+  font-weight: 200;
+  width: 60%;
+  text-align: center;
+}
+.swal2-input::-moz-placeholder {
+  color: #3a3a3a;
+}
+.swal2-input::placeholder {
+  color: #3a3a3a;
 }/*# sourceMappingURL=style.css.map */

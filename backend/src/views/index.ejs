@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -21,28 +22,33 @@
     <main class="boxTasks">
         <section class="addTask">
             <h2>Seja bem-vindo <%= user%> !</h2>
-            <button class="newTask">+ Adicionar tarefa</button>
+            <input id="userId" type="hidden" value="<%= userId %>">
+            <button id="newTask" class="newTask">+ Adicionar tarefa</button>
         </section>
 
         <section class="tasks">
 
-            <div class="task">
-                <h3>Ir ao mercado fazer compras</h3>
+            <% tasks.forEach(task=> { %>
+                <div class="task">
+                    <h3><%= task.description %></h3>
 
-                <span class="status">Status: <b>Pendente</b></span>
+                    <span class="status">Status: <b>Pendente</b></span>
 
-                <hr class="horizontalRule">
+                    <hr class="horizontalRule">
 
-                <div class="boxButtons">
-                    <button>Editar</button>
-                    <button>Deletar</button>
+                    <div class="boxButtons">
+                        <button>Editar</button>
+                        <button>Deletar</button>
+                    </div>
                 </div>
-            </div>
+            <% }) %>
 
         </section>
     </main>
 
     <%- include('partials/footer') %>
+
+    <script src="js/tasks.js"></script>
 </body>
 
 </html>

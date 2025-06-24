@@ -1,12 +1,8 @@
 const router = require('express').Router()
-const authorization = require('../middleware/auth')
+const authentication = require('../middleware/auth')
+const webControllers = require('../controllers/web')
 
-router.get('/', authorization, (req,res) => {
-    res.render('index', {
-        user: req.userName,
-        message: 'mensagem personalizada!'
-    })
-})
+router.get('/', authentication, webControllers.listTasks)
 
 router.get('/login', (req,res) => {
     res.render('login', {
