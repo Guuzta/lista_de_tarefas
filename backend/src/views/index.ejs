@@ -38,8 +38,10 @@
 
                     <div class="boxButtons">
                         <button>Editar</button>
-                        <button>Deletar</button>
+                        <button id="deleteTask">Deletar</button>
                     </div>
+
+                    <input id="taskId" type="hidden" value="<%= task._id%>">
                 </div>
             <% }) %>
 

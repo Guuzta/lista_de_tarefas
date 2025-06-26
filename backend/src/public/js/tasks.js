@@ -1,4 +1,6 @@
 const newTaskButton = document.getElementById('newTask')
+const deleteTaskButtons = document.querySelectorAll('#deleteTask')
+
 const API_URL = 'http://localhost:3000/api'
 
 newTaskButton.onclick = function () {
@@ -64,3 +66,25 @@ newTaskButton.onclick = function () {
         }
     })
 }
+
+deleteTaskButtons.forEach((button) => {
+    button.onclick = function () {
+
+        const taskId = document.getElementById('taskId').value
+
+        console.log(taskId)
+
+        fetch(`${API_URL}/tasks/${taskId}`, {
+            method: 'DELETE'
+        })
+            .then(response => response.json())
+            .then(data => {
+               if(data.message === 'sucess') {
+                    location.reload()
+                }
+            }).catch(error => {
+                console.error(error)
+            })
+
+    }
+})
