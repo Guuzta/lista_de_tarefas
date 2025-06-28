@@ -82,7 +82,10 @@ async function loginUser( req, res) {
             maxAge: 3600000
         })
 
-        return res.redirect('/')
+        return res.send({
+            message: 'Login realizado com sucesso!',
+            succeed: true
+        })
 
     } catch (error) {
         res.send({
