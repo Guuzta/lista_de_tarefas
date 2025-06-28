@@ -69,6 +69,15 @@ body {
             outline: none;
             color: #ffffff;
             background-color: $primary-color;
+
+            &.error {
+                border: 1px solid #ff0000;;
+            }
+
+            &.error::placeholder {
+                font-style: italic;
+                color: #ff0000;
+            }
         }
 
         button {
