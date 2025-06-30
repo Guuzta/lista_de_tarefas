@@ -85,9 +85,9 @@ newTaskButton.onclick = function (e) {
 }
 
 deleteTaskButtons.forEach((button) => {
-    button.onclick = function () {
+    button.onclick = function (e) {
 
-        const taskId = document.getElementById('taskId').value
+        const taskId = e.target.parentElement.nextElementSibling.value
 
         Swal.fire({
             title: 'Tem certeza que deseja deletar esta tarefa?',
