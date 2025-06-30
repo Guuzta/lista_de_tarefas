@@ -89,19 +89,52 @@ deleteTaskButtons.forEach((button) => {
 
         const taskId = document.getElementById('taskId').value
 
-        console.log(taskId)
+        Swal.fire({
+            title: 'Tem certeza que deseja deletar esta tarefa?',
+            text: 'Esta ação não poderá ser revertida!',
+            iconColor: '#e1cc2d',
+            icon: 'warning',
+            allowOutsideClick: false,
+            showDenyButton: true,
+            confirmButtonText: 'Sim, deletar!',
+            denyButtonText: 'Cancelar',
+            customClass: {
+                title: 'warningTitle',
+                popup: 'popupBackground',
+                content: 'descriptionText',
+                confirmButton: 'confirmButton',
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`${API_URL}/tasks/${taskId}`, {
+                    method: 'DELETE'
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.message === 'sucess') {
+                            Swal.fire({
+                                showConfirmButton: false,
+                                title: 'Tarefa removida com sucesso!',
+                                icon: 'success',
+                                timer: 1300,
+                                customClass: {
+                                    popup: 'popupBackground',
+                                    title: 'title',
+                                    confirmButton: 'confirmButton',
+                                }
+                            })
 
-        fetch(`${API_URL}/tasks/${taskId}`, {
-            method: 'DELETE'
+                            setTimeout(function () {
+                                location.reload()
+                            }, 1400)
+                        }
+                    }).catch(error => {
+                        console.error(error)
+                    })
+            }
         })
-            .then(response => response.json())
-            .then(data => {
-                if (data.message === 'sucess') {
-                    location.reload()
-                }
-            }).catch(error => {
-                console.error(error)
-            })
+
+
 
     }
 })

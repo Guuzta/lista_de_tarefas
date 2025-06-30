@@ -257,4 +257,13 @@ body {
 }
 .swal2-input::placeholder {
   color: #3a3a3a;
+}
+
+.warningTitle {
+  color: #c9d4db;
+}
+
+.swal2-html-container {
+  font-style: italic;
+  font-weight: 200;
 }/*# sourceMappingURL=style.css.map */
