@@ -4,13 +4,14 @@ const editingTaskButtons = document.querySelectorAll('#editingTask')
 
 const API_URL = 'http://localhost:3000/api'
 
-newTaskButton.onclick = function () {
+newTaskButton.onclick = function (e) {
     Swal.fire({
         title: 'Adicionar nova tarefa',
         html: `
             <input type="text" id="description" class="swal2-input" placeholder="Digite sua nova tarefa aqui">
         
         `,
+        allowOutsideClick: false,
         showDenyButton: true,
         confirmButtonText: 'Cadastrar',
         denyButtonText: 'Cancelar',
@@ -20,38 +21,52 @@ newTaskButton.onclick = function () {
             confirmButton: 'confirmButton',
         }
     }).then((result) => {
+
+        const description = document.getElementById('description').value
+        const userId = document.getElementById('userId').value
+
         if (result.isConfirmed) {
-
-            const description = document.getElementById('description').value
-            const userId = document.getElementById('userId').value
-
-            fetch(`${API_URL}/tasks`, {
-                method: 'POST',
-                headers: {
-                    'Content-type': 'application/json'
-                },
-                body: JSON.stringify({
-                    description,
-                    userId
+            if (!description) {
+                Swal.fire({
+                    showConfirmButton: false,
+                    title: 'Insira uma tarefa válida!',
+                    icon: 'error',
+                    timer: 1300,
+                    customClass: {
+                        popup: 'popupBackground',
+                        title: 'title',
+                        confirmButton: 'confirmButton',
+                    }
                 })
-            })
+            } else {
+                fetch(`${API_URL}/tasks`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        description,
+                        userId
+                    })
+                })
 
 
-            Swal.fire({
-                showConfirmButton: false,
-                title: 'Tarefa cadastrada com sucesso!',
-                icon: 'success',
-                timer: 1300,
-                customClass: {
-                    popup: 'popupBackground',
-                    title: 'title',
-                    confirmButton: 'confirmButton',
-                }
-            })
+                Swal.fire({
+                    showConfirmButton: false,
+                    title: 'Tarefa cadastrada com sucesso!',
+                    icon: 'success',
+                    timer: 1300,
+                    customClass: {
+                        popup: 'popupBackground',
+                        title: 'title',
+                        confirmButton: 'confirmButton',
+                    }
+                })
 
-            setTimeout(function () {
-                location.reload()
-            }, 1400)
+                setTimeout(function () {
+                    location.reload()
+                }, 1400)
+            }
         } else {
             Swal.fire({
                 showConfirmButton: false,
@@ -65,6 +80,7 @@ newTaskButton.onclick = function () {
                 }
             })
         }
+
     })
 }
 
