@@ -114,6 +114,7 @@ editingTaskButtons.forEach((button) => {
             <input type="text" id="description" class="swal2-input" placeholder="Atualize sua tarefa aqui">
         
         `,
+            allowOutsideClick: false,
             showDenyButton: true,
             confirmButtonText: 'Atualizar',
             denyButtonText: 'Cancelar',
@@ -123,39 +124,51 @@ editingTaskButtons.forEach((button) => {
                 confirmButton: 'confirmButton',
             }
         }).then((result) => {
+
+            const description = document.getElementById('description').value
+            const taskId = document.getElementById('taskId').value
+
             if (result.isConfirmed) {
-
-                const description = document.getElementById('description').value
-                const taskId = document.getElementById('taskId').value
-
-                console.log(taskId)
-
-                fetch(`${API_URL}/tasks/${taskId}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        description,
+                if (!description) {
+                    Swal.fire({
+                        showConfirmButton: false,
+                        title: 'Insira uma tarefa válida!',
+                        icon: 'error',
+                        timer: 1300,
+                        customClass: {
+                            popup: 'popupBackground',
+                            title: 'title',
+                            confirmButton: 'confirmButton',
+                        }
                     })
-                })
+                } else {
 
+                    fetch(`${API_URL}/tasks/${taskId}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            description,
+                        })
+                    })
 
-                Swal.fire({
-                    showConfirmButton: false,
-                    title: 'Tarefa atualizada com sucesso!',
-                    icon: 'success',
-                    timer: 1300,
-                    customClass: {
-                        popup: 'popupBackground',
-                        title: 'title',
-                        confirmButton: 'confirmButton',
-                    }
-                })
+                    Swal.fire({
+                        showConfirmButton: false,
+                        title: 'Tarefa atualizada com sucesso!',
+                        icon: 'success',
+                        timer: 1300,
+                        customClass: {
+                            popup: 'popupBackground',
+                            title: 'title',
+                            confirmButton: 'confirmButton',
+                        }
+                    })
 
-                setTimeout(function () {
-                    location.reload()
-                }, 1400)
+                    setTimeout(function () {
+                        location.reload()
+                    }, 1400)
+                }
             } else {
                 Swal.fire({
                     showConfirmButton: false,
