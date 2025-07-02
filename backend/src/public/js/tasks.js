@@ -140,7 +140,7 @@ deleteTaskButtons.forEach((button) => {
 })
 
 editingTaskButtons.forEach((button) => {
-    button.onclick = function () {
+    button.onclick = function (e) {
         Swal.fire({
             title: 'Atualizar tarefa',
             html: `
@@ -159,7 +159,7 @@ editingTaskButtons.forEach((button) => {
         }).then((result) => {
 
             const description = document.getElementById('description').value
-            const taskId = document.getElementById('taskId').value
+            const taskId = e.target.parentElement.nextElementSibling.value
 
             if (result.isConfirmed) {
                 if (!description) {
