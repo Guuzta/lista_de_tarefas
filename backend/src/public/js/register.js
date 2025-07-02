@@ -1,5 +1,5 @@
 const registerForm = document.querySelector('.registerForm')
-const API_URL = 'http://localhost:3000/api'
+const API_URL = 'https://lista-de-tarefas-iq6a.onrender.com/api'
 
 registerForm.onsubmit = async function (e) {
     e.preventDefault()
