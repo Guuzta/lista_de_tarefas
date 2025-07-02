@@ -1,5 +1,5 @@
 const loginForm = document.getElementById('loginForm')
-const API_URL = 'http://localhost:3000/api'
+const API_URL = 'https://lista-de-tarefas-iq6a.onrender.com/api'
 
 loginForm.onsubmit = function (e) {
     e.preventDefault()
