@@ -1,5 +1,6 @@
 const loginForm = document.getElementById('loginForm')
-const API_URL = 'https://lista-de-tarefas-iq6a.onrender.com/api'
+const isLocalHost = window.location.hostname === 'localhost'
+const API_URL = isLocalHost ? 'http://localhost:3000/api' : 'https://lista-de-tarefas-iq6a.onrender.com/api'
 
 loginForm.onsubmit = function (e) {
     e.preventDefault()

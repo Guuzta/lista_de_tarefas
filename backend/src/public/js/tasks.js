@@ -2,7 +2,8 @@ const newTaskButton = document.getElementById('newTask')
 const deleteTaskButtons = document.querySelectorAll('#deleteTask')
 const editingTaskButtons = document.querySelectorAll('#editingTask')
 
-const API_URL = 'https://lista-de-tarefas-iq6a.onrender.com/api'
+const isLocalHost = window.location.hostname === 'localhost'
+const API_URL = isLocalHost ? 'http://localhost:3000/api' : 'https://lista-de-tarefas-iq6a.onrender.com/api'
 
 newTaskButton.onclick = function (e) {
     Swal.fire({
