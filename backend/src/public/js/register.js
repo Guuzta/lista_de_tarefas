@@ -73,7 +73,19 @@ registerForm.onsubmit = async function (e) {
                         }
                     })
 
-                } 
+                } else {
+                    Swal.fire({
+                        showConfirmButton: false,
+                        title: data.message,
+                        icon: 'error',
+                        timer: 1300,
+                        customClass: {
+                            popup: 'popupBackground',
+                            title: 'title',
+                            confirmButton: 'confirmButton',
+                        }
+                    })
+                }
             })
     }
 
