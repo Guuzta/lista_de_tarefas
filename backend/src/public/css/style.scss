@@ -71,7 +71,8 @@ body {
             background-color: $primary-color;
 
             &.error {
-                border: 1px solid #ff0000;;
+                border: 1px solid #ff0000;
+                ;
             }
 
             &.error::placeholder {
@@ -205,17 +206,70 @@ body {
 
         .task {
 
+            &.done {
+                border: 1px solid #238636;
+            }
+
+            position: relative;
             margin-left: 30px;
             margin-top: 60px;
-            border: 1px solid #3a3a3a;
+            border: 1px solid #e42323;
             background-color: $secondary-color;
             width: 30%;
             border-radius: 10px;
             padding: 25px 20px;
 
             h3 {
+                width: 90%;
                 font-size: 25px;
                 color: #5ca1eb;
+            }
+
+            .isDone {
+                cursor: pointer;
+                position: absolute;
+                margin-top: 30px;
+                margin-right: 30px;
+                top: 0;
+                right: 0;
+                background-color: $secondary-color-lighter;
+                border-radius: 50%;
+                width: 30px;
+                height: 30px;
+                transition: 400ms all ease;
+
+                &:hover {
+                    background-color: $secondary-color-darker;
+
+
+                    &::after {
+                        content: '';
+                        display: block;
+                        border-radius: 50%;
+                        background-color: #238636;
+                        width: 20px;
+                        height: 20px;
+                        position: absolute;
+                        top: 5px;
+                        right: 5px;
+                    }
+                }
+                
+                &.done {
+                    background-color: $secondary-color-darker;
+                }
+
+                &.done::after {
+                    content: '';
+                    display: block;
+                    border-radius: 50%;
+                    background-color: #238636;
+                    width: 20px;
+                    height: 20px;
+                    position: absolute;
+                    top: 5px;
+                    right: 5px;
+                }
             }
 
             .status {
@@ -227,6 +281,13 @@ body {
 
                 b {
                     color: #e42323;
+                }
+
+                &.done {
+
+                    b {
+                        color: #238636;
+                    }
                 }
             }
 

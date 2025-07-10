@@ -15,6 +15,4 @@ router.post('/register', AuthenticationController.registerUser)
 
 router.post('/login', AuthenticationController.loginUser)
 
-
-
 module.exports = router

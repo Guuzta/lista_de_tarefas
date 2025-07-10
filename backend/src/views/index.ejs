@@ -29,8 +29,10 @@
         <section class="tasks">
 
             <% tasks.forEach(task=> { %>
-                <div class="task">
+                <div id="task" class="task">
                     <h3><%= task.description %></h3>
+
+                    <div id="doneTask" class="isDone"></div>
 
                     <span class="status">Status: <b>Pendente</b></span>
 

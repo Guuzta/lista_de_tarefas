@@ -1,9 +1,37 @@
 const newTaskButton = document.getElementById('newTask')
 const deleteTaskButtons = document.querySelectorAll('#deleteTask')
 const editingTaskButtons = document.querySelectorAll('#editingTask')
+const doneTaskButtons = document.querySelectorAll('#doneTask')
 
 const isLocalHost = window.location.hostname === 'localhost'
 const API_URL = isLocalHost ? 'http://localhost:3000/api' : 'https://lista-de-tarefas-iq6a.onrender.com/api'
+
+async function isTaskDone() {
+    const tasks = document.querySelectorAll('#task')
+
+    tasks.forEach((task) => {
+
+        let taskId = task.children.taskId.value
+
+        fetch(`${API_URL}/tasks/${taskId}`)
+            .then(response => response.json())
+            .then(data => {
+                const { isDone } = data.tasks[0]
+                if (isDone) {
+                    const taskCard = task
+                    const buttonIsDone = task.querySelector('.isDone')
+                    const taskStatus = task.querySelector('.status')
+
+                    taskCard.classList.add('done')
+                    buttonIsDone.classList.add('done')
+                    taskStatus.classList.add('done')
+                    taskStatus.innerHTML = `Status: <b>Concluído</b>`
+                }
+            })
+    })
+}
+
+isTaskDone()
 
 newTaskButton.onclick = function (e) {
     Swal.fire({
@@ -177,6 +205,8 @@ editingTaskButtons.forEach((button) => {
                     })
                 } else {
 
+                    const isDone = false
+
                     fetch(`${API_URL}/tasks/${taskId}`, {
                         method: 'PUT',
                         headers: {
@@ -184,6 +214,7 @@ editingTaskButtons.forEach((button) => {
                         },
                         body: JSON.stringify({
                             description,
+                            isDone
                         })
                     })
 
@@ -217,5 +248,46 @@ editingTaskButtons.forEach((button) => {
                 })
             }
         })
+    }
+})
+
+doneTaskButtons.forEach((button) => {
+    button.onclick = function (e) {
+
+        const isDoneHtml = e.target.classList.contains('done')
+        const taskId = e.target.parentElement.children.taskId.value
+
+        if (!isDoneHtml) {
+
+            const isDone = true
+
+            fetch(`${API_URL}/tasks/${taskId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    isDone,
+                })
+            })
+
+            location.reload()
+
+        } else {
+            const isDone = false
+
+            fetch(`${API_URL}/tasks/${taskId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    isDone,
+                })
+            })
+
+            location.reload()
+        }
+
     }
 })

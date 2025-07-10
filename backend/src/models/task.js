@@ -8,6 +8,10 @@ const taskSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'users',
         required: true
+    },
+    isDone: {
+        type: Boolean,
+        default: false
     }
 })
 

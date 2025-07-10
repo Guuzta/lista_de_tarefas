@@ -17,7 +17,7 @@ async function get (req,res) {
 
 async function post (req, res) {
 
-    const { description, userId } = req.body
+    const { description, userId, isDone } = req.body
 
     const newTask = new tasksModel({ description, userId })
 
